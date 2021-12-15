@@ -1,0 +1,25 @@
+#SearchButton{
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: cyan;
+    background-color: white;
+    color: cyan;
+}
+#plus{
+    border-radius: 100px;
+    height: 40px;
+    width: 40px;
+    color: white;
+    background-color: cyan;
+    margin-top: 20px;
+}
+#CreateAccount{
+    width: 200px;
+    height: 30px;
+    border-color: black;
+    background-color: blue;
+    color: white;
+    margin-top: 20px;
+    box-shadow: 5px 5px black;
+}
