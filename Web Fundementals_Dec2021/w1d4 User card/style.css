@@ -1,0 +1,38 @@
+#main {
+    width: 80vh;
+    height: 40vh;
+    border: 5px solid black;
+    margin: 200px auto;
+}
+
+#bluebar {
+    background-color: teal;
+    height: 20%;
+}
+
+#User {
+    height: 100px;
+    margin-left: 20px;
+    position: relative;
+    top: -50px;
+}
+
+#body>img {
+    height: 20px;
+}
+
+#body {
+    margin-left: 20px;
+    width: 250px;
+    position: relative;
+    bottom: 50px;
+}
+
+label {
+    margin-left: 10px;
+}
+
+#gearlabel {
+    text-decoration: underline;
+    color: blue;
+}

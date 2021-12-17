@@ -1,0 +1,105 @@
+/* * {
+    margin: 0px;
+    padding: 0px;
+} */
+
+
+#Container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+#NavBar {
+    background-color: grey;
+    display: flex;
+    width: 60%;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+#NavBar>input {
+    justify-self: center;
+    height: 20px;
+    width: 300px;
+    align-self: center;
+    border: 5px solid black;
+}
+
+#NavBar>button {
+    background-color: blue;
+    color: white;
+    height: 40px;
+    width: 100px;
+    align-self: center;
+}
+
+#Body {
+    height: 100vh;
+    width: 43%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding-right: -20px;
+}
+
+.def {
+    height: 200px;
+    width: 80%;
+    border: 5px solid black;
+    margin: 20px;
+    align-self: flex-start;
+}
+
+#add {
+    height: 200px;
+    width: 280px;
+    border: 5px solid black;
+    margin-top: 20px;
+    font-size: 15pt;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    margin-right: 20px;
+}
+
+#addbtn {
+    width: 80%;
+    margin: 0px auto;
+    background-color: green;
+    height: 40px;
+    border: 5px solid black;
+    box-shadow: 5px 5px;
+    font-size: 15pt;
+    cursor: pointer;
+}
+
+p>span {
+    color: blue;
+    text-decoration-line: underline;
+}
+
+.def>p {
+    margin: 0px auto;
+    position: relative;
+    bottom: 100px;
+    left: 200px;
+    font-size: 15pt;
+}
+
+.def>h1,h2,h3 {
+    margin-left: 20px;
+}
+
+.def>button { 
+    background-color: yellow;
+    margin-left: 20px;
+    height: 40px;
+    width: 120px;
+    position: relative;
+    bottom: 12px;
+    border: 2px solid black;
+    box-shadow: 2px 2px;
+    font-size: 15pt;
+}
