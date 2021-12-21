@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id=innerheader>
+                <h1>Dojo Weather</h1>
+                <h2>
+                    <Span onclick="say ()">Burbank</Span>
+                    <span onclick="say2 ()">Chicago</span>
+                    <span onclick="say3 ()">Dallas</span>
+                 </h2>
+            </div>
+        </div>
+        <div id="body">
+            <div id="subheader">
+                <h1>San Jose</h1>
+                <div id="selector">
+                    <label for="showtemp">Show Temperature in</label>
+                    <select name="showtemp" id="showTemp" onChange="update()">
+                        <option value="C">C</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+            </div>
+            <div class="daycard">
+                <h2>Today</h2>
+                <img src="assets/some_rain.png" alt="rain">
+                <p>some rain</p>
+                <div id=tempnum>
+                    <h3 class="temp">24</h3><h3 class="temp">18</h3>
+                </div>
+
+            </div>
+            <div class="daycard">
+                <h2>Tommorw</h2>
+                <img src="assets/some_sun.png" alt="rain">
+                <p>some sun</p>
+                <div id=tempnum>
+                    <h3 class="temp">27</h3><h3 class="temp">19</h3>
+                </div>
+            </div>
+            <div class="daycard">
+                <h2>Friday</h2>
+                <img src="assets/some_clouds.png" alt="rain">
+                <p>some clouds</p>
+                <div id=tempnum>
+                    <h3 class="temp">21</h3><h3 class="temp">16</h3>
+                </div>
+            </div>
+            <div class="daycard">
+                <h2>Saturday</h2>
+                <img src="assets/some_sun.png" alt="rain">
+                <p>some sun</p>
+                <div id=tempnum>
+                    <h3 class="temp">26</h3><h3 class="temp">24</h3>
+                </div>
+
+            </div>
+        <div id="cookies">
+            <img src="assets/cookie.png" alt="coockie">
+            <div id="cookietext">
+                <h2>Stop! Cookie Time</h2>
+                <p>We use cookies(sadly not the edible kind) to personalize<br>and adds, to provide social media features and to<br> analyze our traffic. <a href="http://www.google.com">read more</a></p>
+            </div>
+            <button id="accept" onclick="other ()">Accept</button>
+        </div>
+        </div>
+        <script src="function.js"></script>
+    </div>
+    
+</body>
+</html>

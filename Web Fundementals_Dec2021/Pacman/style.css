@@ -1,0 +1,69 @@
+body{
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 300px 400px 300px 100px;
+}
+
+.row {
+    width: 800px;
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+
+.row>div {
+    height: 30px;
+    width: 30px;
+}
+
+.brick {
+    background-color: blue;
+}
+
+.coin {
+    background: url(assets/pacman.coin2.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px;
+}
+
+.pacMan {
+    background: url(assets/pacman.icon.gif);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+    transform: rotate(x);
+}
+
+
+button {
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+    color: white;
+    text-align: center;
+}
+
+.pinkGhost {
+    background: url(assets/red2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+   
+
+}
+
+.blueGhost{
+    background: url(assets/Blue1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+}
+
+.scoreBoard{
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 30x;
+}

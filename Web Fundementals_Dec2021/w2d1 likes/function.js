@@ -8,8 +8,8 @@ function plus2() {
     document.getElementById ("like2").innerHTML = i++
 
 }
-var y = 10
+var y = 9
 function plus3() {
-    document.getElementById ("like3").innerHTML = y++
+    document.getElementById ("like3").innerText = ++y 
 
 }

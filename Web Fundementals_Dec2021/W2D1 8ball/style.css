@@ -1,0 +1,24 @@
+#ball {
+    border-radius: 50%;
+    height: 700px;
+    width: 700px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#answer {
+    height: 50px;
+    width: 120px;
+    background-color: white;
+    /* margin-right: 300px; */
+}
+
+button {
+    height: 50px;
+    width: 120px;
+    margin-top: 60px;
+    background-color: green;
+}
