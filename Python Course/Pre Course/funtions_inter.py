@@ -31,3 +31,44 @@ for i in range(len(students)):
 
     #Get Values
 print(students[i]['last_name'])
+
+
+dojo = {
+   'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+   'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+}
+length_key = len(dojo['locations'])
+print length_key, "LOCATIONS"
+i = 0
+while i < len(dojo['locations']):
+    print dojo ['locations'][i]
+    i += 1
+length_key = len(dojo['instructors'])
+print length_key, "Instructors"
+i = 0
+while i < len(dojo['instructors']):
+    print dojo ['instructors'][i]
+    i += 1
+
+
+
+# printInfo(dojo)
+# # output:
+# 7 LOCATIONS
+# San Jose
+# Seattle
+# Dallas
+# Chicago
+# Tulsa
+# DC
+# Burbank
+    
+# 8 INSTRUCTORS
+# Michael
+# Amy
+# Eduardo
+# Josh
+# Graham
+# Patrick
+# Minh
+# Devon
