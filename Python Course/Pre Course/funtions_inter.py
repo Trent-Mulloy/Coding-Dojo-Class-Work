@@ -39,16 +39,16 @@ dojo = {
    'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
 }
 length_key = len(dojo['locations'])
-print length_key, "LOCATIONS"
+print (length_key, "LOCATIONS")
 i = 0
 while i < len(dojo['locations']):
-    print dojo ['locations'][i]
+    print (dojo ['locations'][i])
     i += 1
 length_key = len(dojo['instructors'])
-print length_key, "Instructors"
+print (length_key, "Instructors")
 i = 0
 while i < len(dojo['instructors']):
-    print dojo ['instructors'][i]
+    print (dojo ['instructors'][i])
     i += 1 
 
 
