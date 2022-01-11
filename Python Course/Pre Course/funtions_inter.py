@@ -26,8 +26,9 @@ students = [
     ]
 # def iterateDictionary(students):
 for i in range(len(students)):
-    print ("First Name = " + students[i]['first_name'], "Last Name = " + students[i]['last_name'])
-
+    for key,val in students[i].items():
+    # print ("First Name = " + students[i]['first_name'] + ", Last Name = " + students[i]['last_name'])
+        print(f"{key} = {val}, ") 
 
     #Get Values
 print(students[i]['last_name'])
