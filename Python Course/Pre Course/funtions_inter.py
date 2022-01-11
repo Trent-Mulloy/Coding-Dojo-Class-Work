@@ -48,7 +48,7 @@ print length_key, "Instructors"
 i = 0
 while i < len(dojo['instructors']):
     print dojo ['instructors'][i]
-    i += 1
+    i += 1 
 
 
 
