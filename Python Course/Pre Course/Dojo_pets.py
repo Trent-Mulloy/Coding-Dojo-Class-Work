@@ -19,7 +19,7 @@ class Pet:
         energy = 5
         return energy 
     def play(self):
-        health = 5
+        health += 5
         return health
     def noise(self):
         print ("Bark")
