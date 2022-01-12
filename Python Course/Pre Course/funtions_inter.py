@@ -16,7 +16,7 @@ x[1][0] = 15
 # sports_directory ["soccer"][0] = "andres"
 # print sports_directory
 # z[0]["y"] = 30
-# print z
+# print z 
 
 students = [
          {'first_name':  'Michael', 'last_name' : 'Jordan'},
