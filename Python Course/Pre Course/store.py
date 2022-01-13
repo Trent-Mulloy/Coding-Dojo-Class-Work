@@ -14,20 +14,25 @@ class Store:
     def sell_product(self, id):
         J = self.plist[id]
         self.plist.remove(J)
+    def inflation(self, percent_change):
+        for i in range(len (self.plist)):
+            self.plist[i].price = self.plist[i].price * percent_change
+        return self
+    def discount(self, percent_change):
+        for i in range(len (self.plist)):
+            self.plist[i].price = self.plist[i].price / percent_change
+        return self
 
 class Product:
     def __init__(self, name, price, catagory):
         self.name = name
         self.price = price
         self.catagory = catagory
-        pass
     def update_price(self, percent_change, is_increased):
         if (is_increased == True):
             self.price = self.price * percent_change
-            # print (f"{self.name} + {str(self.price)}  + {self.catagory}")
             return self
         self.price = self.price / percent_change
-        # print (f"{self.name} + {str(self.price)}  + {self.catagory}")
         return self
     def Print_info(self):
         print (f"{self.name} + {str(self.price)}  + {self.catagory}")
@@ -44,4 +49,8 @@ store.Info()
 stk.update_price(5,True)
 store.Info()
 store.sell_product(1)
+store.Info()
+store.inflation(4)
+store.Info()
+store.discount(2)
 store.Info()
