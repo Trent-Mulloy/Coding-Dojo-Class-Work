@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style1.css') }}">
+</head>
+<body>
+    <h1>Checkerboard</h1>
+    <div>
+    <table>
+    {% for y in range(0,row): %}
+        <tr>
+            {% for x in range(0,col): %}
+            <td class= "color{{ (y+x)%2+1 }}"></td>
+            {% endfor %}
+            
+        </tr>
+    {% endfor %} 
+    </table>
+</div>
+</body>
+</html>

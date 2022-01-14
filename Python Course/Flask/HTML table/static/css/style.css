@@ -1,0 +1,20 @@
+div{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+table{
+    display: flex;
+    border-collapse: collapse;
+    height: 20%;
+    /* width: 60%; */
+    /* border: 2px solid black; */
+}
+td{
+    border-collapse: collapse;
+    border: 2px solid black;
+    text-align: left;
+    width: 200px;
+    height: 50px;
+}
