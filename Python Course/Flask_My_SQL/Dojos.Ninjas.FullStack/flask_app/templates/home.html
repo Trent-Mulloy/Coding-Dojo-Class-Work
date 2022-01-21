@@ -31,7 +31,7 @@
             <h1>New Dojo</h1>
             <form action="/do_create_dojo" method="post">
                 <label for="NewDojoName">DojoName</label>
-                <input type="text" name="NewDojoName" placeholder="Dojo Name Here">
+                <input type="text" name="NewDojoName" placeholder="Dojo Name Here" required>
                 <div class="row">
                 <input type= "submit" class="btn-primary btn" value="Complete" id="Submit">
                 </div>
@@ -66,6 +66,7 @@
                     <th scope="col">First</th>
                     <th scope="col">Last</th>
                     <th scope="col">age</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -75,6 +76,7 @@
                     <td>{{ ninja.first_name }}</td>
                     <td>{{ ninja.last_name }}</td>
                     <td>{{ ninja.age }}</td>
+                    <td><a href="/deleteninja/{{ ninja.id }}" class="btn btn-primary btn-sm btn-block">DELETE NINJA</a> | <a href="/editninja/{{ ninja.id }}" class="btn btn-primary btn-sm btn-block">EDIT NINJA</a></td>
                   </tr>
                   {% endfor %}
                 </tbody>
