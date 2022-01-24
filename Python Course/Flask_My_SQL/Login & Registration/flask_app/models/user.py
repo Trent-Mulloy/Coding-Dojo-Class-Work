@@ -38,7 +38,7 @@ class User:
         if len(data["password"]) < 5:
             flash("password must be at least 5 charecters long!")
             is_valid = False
-        return is_valid
+        return is_valid 
 
     @classmethod
     def add_user(cls, data):
