@@ -27,6 +27,10 @@ def update1():
         "age": request.form["age"],
         "dojos_id": request.form["location"]
     }
+
+    if not Ninja.validate_ninja(data):
+        return redirect("/addninja")
+    
     Ninja.add_ninja(data)
     return redirect ('/')
 

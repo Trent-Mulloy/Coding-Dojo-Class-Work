@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 class Ninja:
     def __init__(self, data):
@@ -23,9 +24,31 @@ class Ninja:
         
         return ninjas
     
+    @staticmethod
+    def validate_ninja(data):
+        is_valid = True
+        if len(data["fname"]) < 3:
+            flash("First name must be at least 3 charecters long!")
+            is_valid = False
+        if len(data["lname"]) < 3:
+            flash("Last name must be at least 3 charecters long!")
+            is_valid = False
+        if data["age"] == "":
+            flash("Please enter a valid age")
+            is_valid = False
+        elif int(data["age"]) < 10:
+            flash("Must be atleast 16 to join")
+            is_valid = False
+        return is_valid
+    
+    
+    
+    
+    
+    
     @classmethod
     def add_ninja(cls, data):
-        query = 'INSERT INTO ninjas ( first_name, last_name, age, dojos_id) VALUES (%(fname)s, %(lname)s, %(age)s, %(dojos_id)s)'
+        query = 'INSERT INTO ninjas ( first_name, last_name, age, dojos_id, created_at) VALUES (%(fname)s, %(lname)s, %(age)s, %(dojos_id)s, NOW())'
         
         return connectToMySQL('mydb').query_db( query, data )
 
@@ -44,7 +67,7 @@ class Ninja:
 
     @classmethod
     def edit_ninja(cls, data):
-        query = "UPDATE ninjas SET first_name=%(fname)s, last_name=%(lname)s, age=%(age)s, dojos_id=%(dojos_id)s WHERE id = %(ninja_id)s;"
+        query = "UPDATE ninjas SET first_name=%(fname)s, last_name=%(lname)s, age=%(age)s, dojos_id=%(dojos_id)s, updated_at=NOW() WHERE id = %(ninja_id)s;"
         results = connectToMySQL('mydb').query_db(query, data)
         
         return connectToMySQL('mydb').query_db( query, data ) 
