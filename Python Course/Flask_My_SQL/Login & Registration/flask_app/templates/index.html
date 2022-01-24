@@ -31,24 +31,28 @@
             <h1>Registration</h1>
             <form action="/Register" method="post" class="container text-center">
                 <div class="form-group m-3">
-                    <label for="name">First Name:</label>
+                    <label for="fname">First Name:</label>
                     <input class="form-control" name= "fname" type="text" placeholder="First Name">
                 </div>
                 <div class="form-group m-3">
-                    <label for="location">Last Name:</label>
+                    <label for="lname">Last Name:</label>
                     <input class="form-control" name= "lname" type="text" placeholder="Last Name">
                 </div>
                 <div class="form-group m-3">
-                    <label for="lang">Email:</label>
+                    <label for="email">Email:</label>
                     <input class="form-control" name= "email" type="text" placeholder="example@mail.com">
                 </div>
                 <div class="form-group m-3">
-                    <label for="lang">Age:</label>
+                    <label for="age">Age:</label>
                     <input class="form-control" name= "age" type="text" placeholder="Age">
                 </div>
                 <div class="form-group m-3">
-                    <label for="lang">Password:</label>
+                    <label for="password">Password:</label>
                     <input class="form-control" name= "password" type="text" placeholder="Password">
+                </div>
+                <div class="form-group m-3">
+                    <label for="cpassword">Confirm Password:</label>
+                    <input class="form-control" name= "cpassword" type="text" placeholder="Password">
                 </div>
                 <input type= "submit" class="btn-primary btn" value="Register">
             </form>

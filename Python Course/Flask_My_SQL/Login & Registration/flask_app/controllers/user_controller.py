@@ -11,17 +11,21 @@ def index():
 
 @app.route("/Register", methods=['POST'])
 def update1():
-    pw_hash = bcrypt.generate_password_hash(request.form['password'])
+    
     data = {
         "fname": request.form["fname"],
         "lname": request.form["lname"],
         "email": request.form["email"],
         "age": request.form["age"],
-        "password": pw_hash
+        "password": request.form["password"],
+        "cpassword": request.form["cpassword"]
     }
+
 
     if not User.validate_user(data):
         return redirect("/")
+    
+    data['password'] = bcrypt.generate_password_hash(request.form['password'])
     
     User.add_user(data)
     return redirect ('/')
