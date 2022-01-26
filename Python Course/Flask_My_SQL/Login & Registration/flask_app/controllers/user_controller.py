@@ -25,10 +25,17 @@ def update1():
     if not User.validate_user(data):
         return redirect("/")
     
+    user_in_db = User.get_by_email(data)
+    
+    if user_in_db:
+        flash("Email, already exists")
+        return redirect("/")
+    
     data['password'] = bcrypt.generate_password_hash(request.form['password'])
     
     User.add_user(data)
     return redirect ('/')
+
 
 @app.route('/login', methods=['POST'])
 def login():

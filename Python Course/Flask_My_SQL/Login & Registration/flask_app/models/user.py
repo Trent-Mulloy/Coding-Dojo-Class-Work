@@ -40,7 +40,7 @@ class User:
             is_valid = False
         if (data["password"]) != (data["cpassword"]):
             flash("passwords do not match!")
-            is_valid = False
+            is_valid = False 
         return is_valid 
 
     @classmethod
