@@ -70,5 +70,11 @@ def logout():
     session.clear()
     return redirect ('/')
 
+
+@app.route('/donate')
+def donate():
+    
+    return render_template ('donate.html')
+
     
 
