@@ -1,0 +1,21 @@
+package com.mulloy.OrdersAndItems;
+
+public class ItemProductTest { 
+
+	public static void main(String[] args) {
+		
+		Item item1 = new Item("Grape", 6.50);
+		
+		System.out.println(item1.getName());
+		
+		Order order1 = new Order("Trent");
+		
+		order1.addItem(item1);
+		
+		
+		
+		
+
+	}
+
+}

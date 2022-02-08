@@ -1,0 +1,12 @@
+package com.mulloy.OrdersAndItems;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Items item1 = new Items();
+		item1.name = "Grape";
+		item1.price = 12.5;
+
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.mulloy.BankAccount;
+
+public class BankAccount {
+	private Double checkingBalance;
+	private Double savingBalance;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+
+	}
+
+}

@@ -1,0 +1,27 @@
+package com.mulloy.OrdersAndItems;
+
+public class ItemProductTest { 
+
+	public static void main(String[] args) {
+		
+		Item item1 = new Item();
+		item1.name = "Grape";
+		item1.price = 12.5;
+		Item item2 = new Item();
+		item2.name = "banana";
+		item2.price = 6.25;
+		
+		System.out.println(item1.name);
+		
+		Order order1 = new Order();
+		order1.name = "Trent";
+		order1.total = 13.75;
+		order1.ready = true;
+		order1.items.add(item2);
+		order1.items.add(item1);
+		
+		
+
+	}
+
+}

@@ -1,0 +1,17 @@
+package com.mulloy.BankAccount;
+
+public class BankTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BankAccount account1 = new BankAccount();
+		
+		account1.add("Checking", 25.5);
+		
+		BankAccount.getNumberOfAccounts();
+		System.out.println(BankAccount.getAmountOfMoney());
+		
+
+	}
+
+}
