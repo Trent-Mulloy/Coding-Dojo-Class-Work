@@ -1,0 +1,22 @@
+package com.mulloy.zooKeeper;
+
+public class zooTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Mammal mam1 = new Mammal();
+		
+		Gorilla gor1 = new Gorilla();
+		
+		gor1.throwSomething();
+		gor1.throwSomething();
+		gor1.displayEnergy();
+		gor1.eatBanana();
+		gor1.displayEnergy();
+		
+		System.out.println(mam1.getEnergy());
+		
+
+	}
+
+}

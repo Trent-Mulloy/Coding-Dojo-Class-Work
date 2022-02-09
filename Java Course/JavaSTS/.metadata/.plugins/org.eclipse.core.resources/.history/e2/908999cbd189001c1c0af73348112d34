@@ -1,0 +1,29 @@
+package com.mulloy.zooKeeper;
+
+public class Bat {
+	private int energy = 300;
+
+	public int getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+	
+	public int displayEnergy() {
+		System.out.println(this.energy);
+		return this.energy;
+	}
+	
+	public void fly() {
+		this.energy -= 50;
+		System.out.println("Swoosh! Swoosh!");
+	}
+	
+	public void eatHuman() {
+		this.energy += 25;
+		System.out.println("Crucnh! Crunch! Crunch!");
+	}
+
+}
