@@ -1,9 +1,9 @@
 package com.mulloy.BankAccount;
 
 public class BankAccount {
-	private Double checkingBalance = 0.0;
-	private Double savingBalance = 0.0;
-	private static int numberOfAccounts = 0; 
+	private Double checkingBalance;
+	private Double savingBalance;
+	private static int numberOfAccounts = 0;
 	private static Double amountOfMoney = 0.0;
 
 	public BankAccount() {
@@ -81,7 +81,7 @@ public class BankAccount {
 	
 	public void checkBalance() {
 		System.out.println("Checking Balance = " + this.checkingBalance + "\n" + "Saving Balance = " + this.savingBalance);
-	} 
+	}
 	
 	
 

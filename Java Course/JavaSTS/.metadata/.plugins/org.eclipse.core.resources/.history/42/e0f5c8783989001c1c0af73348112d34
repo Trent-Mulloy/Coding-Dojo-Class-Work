@@ -11,7 +11,6 @@ public class BankTest {
 		account2.add("Saving", 500.0);
 		account1.add("Checking", 20.0);
 		account1.checkBalance();
-		account2.checkBalance();
 		
 		System.out.println(BankAccount.getNumberOfAccounts());
 		System.out.println(BankAccount.getAmountOfMoney());

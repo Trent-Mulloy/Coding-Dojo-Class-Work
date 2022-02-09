@@ -81,7 +81,7 @@ public class BankAccount {
 	
 	public void checkBalance() {
 		System.out.println("Checking Balance = " + this.checkingBalance + "\n" + "Saving Balance = " + this.savingBalance);
-	} 
+	}
 	
 	
 
