@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        #main{
+           width: 100vw;
+           background-color: black;
+           color: yellow;
+        }
+        #com{
+            height: 20vh;
+        }
+        p{
+            font-size: large;
+        }
+        #description{
+            height: 80vh;
+        }
+    </style>
+</head>
+<body class="container text-center" id="main">
+    <div class="container" >
+        {% with messages = get_flashed_messages() %}    <!-- declare a variable called messages -->
+    {% if messages %}               <!-- check if there are any messages -->
+        {% for message in messages %}   <!-- loop through the messages -->
+            <p>{{message}}</p>          <!-- display each message in a paragraph tag -->
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="row">
+<div class="col">
+    <a href="/show/stories" class="btn btn-primary btn-lg btn-block">Back To Stories Page</a>
+    <a href="/dashboard" class="btn btn-primary btn-lg btn-block">Dashboard</a>
+</div>
+</div>
+<form action="/Submit/story" method="post" class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group m-3">
+                            <label for="fname">First Name:</label>
+                            <input class="form-control" name= "fname" type="text" placeholder="First Name">
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="lname">Last Name:</label>
+                            <input class="form-control" name= "lname" type="text" placeholder="Last Name">
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="branch">Branch/Department:</label>
+                            <input class="form-control" name= "branch" type="text" placeholder="Branch/Department">
+                        </div>
+                        <div class="form-group m-3">
+                            <label for="years">Years Served:</label>
+                            <input class="form-control" name= "years" type="text" placeholder="xxxx-xxxx">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group m-3">
+                            <label for="content">Your Story:</label>
+                            <textarea rows = "22" cols = "60" name = "content">
+                             </textarea>
+                        </div>
+                        <input type= "submit" class="btn-primary btn" value="Share">
+                    </div>
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
