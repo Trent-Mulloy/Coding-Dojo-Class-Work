@@ -1,7 +1,0 @@
-package com.mulloy.OrdersAndItems;
-
-public class item {
-	public String name;
-	public Double price;
-
-}
