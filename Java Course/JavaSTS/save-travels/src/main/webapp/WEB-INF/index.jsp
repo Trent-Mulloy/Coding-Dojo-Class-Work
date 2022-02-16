@@ -24,21 +24,24 @@
 </style>
 </head>
 <body class="container text-center" id="main">
-    <h1>Hello World</h1>
-    <table class="table table-striped table-dark">
+    <h1>Expense Report</h1>
+    <table class="table table-striped table-dark" id="tbl">
         <thead>
           <tr>
             <th scope="col">Expense</th>
             <th scope="col">Vendor</th>
             <th scope="col">Amount</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
             <c:forEach items='${ expense_list }' var='expense_obj'>
           <tr>
-            <td><c:out value="${expense_obj.expense_name}"></c:out></td>
+            <td><a href="/expense/${expense_obj.id}"><c:out value="${expense_obj.expense_name}"></a></c:out></td>
             <td><c:out value="${expense_obj.vendor_name}"></c:out></td>
-            <td><c:out value="${expense_obj.amount}"></c:out></td>
+            <td>$<c:out value="${expense_obj.amount}"></c:out></td>
+            <td><a href="/expense/${expense_obj.id}/edit" class="btn btn-primary btn-sm btn-block">Edit</a><br><form action="/expense/${expense_obj.id}/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" class="btn btn-danger btn-sm btn-block" value="Delete">
+            </form></td>
           </tr>
          </c:forEach>
         </tbody>

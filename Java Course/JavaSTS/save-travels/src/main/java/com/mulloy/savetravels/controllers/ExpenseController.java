@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.mulloy.savetravels.models.Expense;
 import com.mulloy.savetravels.services.ExpenseService;
@@ -49,7 +51,49 @@ public class ExpenseController {
 			return "redirect:/";
 		}
 		
+		
 	}
-
-}
+	
+//	@RequestMapping("/expense/{id}/edit")
+//	public String edit_expense(@PathVariable("id") Long id, Model model) {
+//		
+//		
+//		
+//		return "";
+//	}
+	
+	@RequestMapping("/expense/{id}/edit")
+	public String edit_expense(@PathVariable("id") Long id, Model model) {
+		Expense expense = this.expenseServ.one_expense(id);
+		model.addAttribute("expense", expense);
+		model.addAttribute("expenseitem", new Expense());
+		return "edit.jsp";
+	}
+	
+	@RequestMapping(value="/edit/expense/{id}", method=RequestMethod.PUT)
+	public String update_expense(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
+		if (result.hasErrors()) {
+			return "edit.jsp";
+		}
+		else {
+			this.expenseServ.update_expense(expense);
+			return "redirect:/";
+		}
+	}
+	@RequestMapping("/expense/{id}")
+	public String view_expense(@PathVariable("id") Long id, Model model) {
+		Expense expense = this.expenseServ.one_expense(id);
+		model.addAttribute("expense", expense);
+		model.addAttribute("expenseitem", new Expense());
+		return "view_expense.jsp";
+	
+	}
+	
+	@RequestMapping(value="/expense/{id}/delete", method=RequestMethod.DELETE)
+	public String delete(@PathVariable("id") Long id) {
+		this.expenseServ.delete_expense(id);
+		return "redirect:/";
+	}
+	
+	}
 

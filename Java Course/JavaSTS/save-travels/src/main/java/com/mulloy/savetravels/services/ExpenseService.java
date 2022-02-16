@@ -24,5 +24,18 @@ public class ExpenseService {
 		return this.expenseRepo.save(expense);
 		
 	}
+	
+	public Expense one_expense(Long id) {
+		return this.expenseRepo.findById(id).orElse(null);
+	}
+	
+	public Expense update_expense(Expense expense) {
+		return this.expenseRepo.save(expense);
+	}
+	
+	public String delete_expense(Long id) {
+		this.expenseRepo.deleteById(id);
+		return "Success";
+	}
 
 }
