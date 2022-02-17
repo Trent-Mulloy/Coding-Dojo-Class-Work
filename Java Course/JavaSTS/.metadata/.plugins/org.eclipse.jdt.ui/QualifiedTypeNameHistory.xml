@@ -4,11 +4,13 @@
     <fullyQualifiedTypeName name="com.mulloy.OrdersAndItems.Item"/>
     <fullyQualifiedTypeName name="com.mulloy.fruityloops.models.Item"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.mulloy.mvc.models.Book"/>
+    <fullyQualifiedTypeName name="com.mulloy.savetravels.repositories.ExpenseRepository"/>
+    <fullyQualifiedTypeName name="com.mulloy.savetravels.models.Expense"/>
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="javax.persistence.Table"/>
     <fullyQualifiedTypeName name="javax.persistence.Id"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="com.mulloy.mvc.models.Book"/>
     <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
