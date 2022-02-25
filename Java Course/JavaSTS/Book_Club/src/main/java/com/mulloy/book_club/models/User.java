@@ -63,6 +63,8 @@ public class User {
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     private List<Book> books;
     
+  
+    
     //empty constructor
     public User() {}
 
@@ -124,6 +126,8 @@ public class User {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+
+	
 	
 	
     

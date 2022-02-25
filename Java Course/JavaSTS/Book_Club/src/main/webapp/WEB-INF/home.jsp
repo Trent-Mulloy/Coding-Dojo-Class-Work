@@ -39,6 +39,8 @@
             <th scope="col">Title</th>
             <th scope="col">Author Name:</th>
             <th scope="col">Posted By:</th>
+            <th scope="col">Actions:</th>
+            <th scope="col">Likes:</th>
           </tr>
         </thead>
         <tbody>
@@ -47,7 +49,15 @@
             <td><a href="/book/${ book_obj.id }"><c:out value="${book_obj.title}"></c:out></a></td>
             <td><c:out value="${book_obj.author}"></c:out></td>
             <td><c:out value="${book_obj.user.userName}"></c:out></td>
-            </form></td>
+            <c:choose>
+                <c:when test='${ user.id != book_obj.user.id }'>
+                    <td><a href="/like/book/${ book_obj.id }" class="btn btn-primary btn-sm btn-block">Like</a></td>
+                </c:when>
+                <c:otherwise>
+                    <td><a href="/delete/book/${ book_obj.id }" class="btn btn-primary btn-sm btn-block">Delete</a></td>
+                </c:otherwise>
+            </c:choose>
+            <td>${ book_obj.usersWhoLike.size() }</td>
           </tr>
          </c:forEach>
         </tbody>

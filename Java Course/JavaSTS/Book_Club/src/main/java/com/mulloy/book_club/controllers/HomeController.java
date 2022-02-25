@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mulloy.book_club.models.Book;
@@ -79,7 +80,7 @@ public class HomeController {
  }
  
  @RequestMapping("/home")
- public String home(HttpSession session, Model model) {
+ public String home(HttpSession session, Model model, Book book) {
 	 if(session.getAttribute("sessionId") == null) {
 		 return "redirect:/";
 	 }
@@ -101,7 +102,7 @@ public class HomeController {
 	 return "new_book.jsp";
  }
  @PostMapping("/create/book")
-	public String createNinja(@Valid @ModelAttribute("book") Book book, BindingResult result, HttpSession session) {
+	public String createBook(@Valid @ModelAttribute("newBook") Book book, BindingResult result, HttpSession session, Model model) {
 		if(result.hasErrors()) {
 			return "new_book.jsp";
 		}
@@ -118,6 +119,31 @@ public class HomeController {
 	 model.addAttribute("suser", user);
 	 model.addAttribute("book", book);
 	 return "book.jsp";
+ }
+ @RequestMapping("/edit/book/{book_id}")
+ public String edit_book(Model model, @PathVariable("book_id") Long id) {
+	 Book bookToEdit = this.appServ.one_book(id);
+	 model.addAttribute("bookToEdit", bookToEdit);
+	 return "edit_book.jsp";
+ }
+ @PutMapping("/update/book/{id}")
+	public String update(@PathVariable("id") Long id, @Valid @ModelAttribute("bookToEdit") Book bookToEdit, BindingResult result, HttpSession session) {
+		if(result.hasErrors()) {
+			
+			return "edit_book.jsp";
+		}else { 
+			bookToEdit.setUser(this.appServ.one_user((Long) session.getAttribute("sessionId")));
+			this.appServ.update_book(bookToEdit);
+			return "redirect:/home";
+		}
+		
+	}
+ @RequestMapping("/like/book/{book_id}")
+ public String like_book(@PathVariable("book_id") Long bookId, HttpSession session) {
+	 Long user_id = (Long) session.getAttribute("sessionId");
+//	 Book bookToLike = this.appServ.one_book(bookId);
+	 this.appServ.like_book(bookId, user_id);
+	 return "redirect:/home";
  }
 }
 

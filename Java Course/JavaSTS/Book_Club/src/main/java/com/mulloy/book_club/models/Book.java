@@ -1,6 +1,7 @@
 package com.mulloy.book_club.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -24,88 +27,113 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name="books")
 public class Book {
 	
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-@NotBlank
-@Size(min = 2)
-private String title;
-@NotBlank
-@Size(min = 5)
-private String author;
-@NotBlank
-@Size(max = 500)
-private String thoughts;
-@Column(updatable=false)
-@DateTimeFormat(pattern="yyyy-MM-dd")
-private Date createdAt;
-@DateTimeFormat(pattern="yyyy-MM-dd")
-private Date updatedAt;
-@PrePersist
-protected void onCreate(){
-    this.createdAt = new Date();
-}
-@PreUpdate
-protected void onUpdate(){
-    this.updatedAt = new Date();
-}
-@ManyToOne(fetch = FetchType.LAZY)
-@JoinColumn(name="user_id")
-private User user;
-
-public Book() {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-}
-
-public Book(String title, String author, String thoughts, User user) {
-	super();
-	this.title = title;
-	this.author = author;
-	this.thoughts = thoughts;
-	this.user = user;
-}
-public Long getId() {
-	return id;
-}
-public void setId(Long id) {
-	this.id = id;
-}
-public String getTitle() {
-	return title;
-}
-public void setTitle(String title) {
-	this.title = title;
-}
-public String getAuthor() {
-	return author;
-}
-public void setAuthor(String author) {
-	this.author = author;
-}
-public String getThoughts() {
-	return thoughts;
-}
-public void setThoughts(String thoughts) {
-	this.thoughts = thoughts;
-}
-public Date getCreatedAt() {
-	return createdAt;
-}
-public void setCreatedAt(Date createdAt) {
-	this.createdAt = createdAt;
-}
-public Date getUpdatedAt() {
-	return updatedAt;
-}
-public void setUpdatedAt(Date updatedAt) {
-	this.updatedAt = updatedAt;
-}
-public User getUser() {
-	return user;
-}
-public void setUser(User user) {
-	this.user = user;
-}
+	@NotBlank
+	@Size(min = 2)
+	private String title;
+	
+	@NotBlank
+	@Size(min = 5)
+	private String author;
+	
+	@NotBlank
+	@Size(max = 500)
+	private String thoughts;
+	
+	@Column(updatable=false)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date createdAt;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date updatedAt;
+	
+	@PrePersist
+	protected void onCreate(){
+	    this.createdAt = new Date();
+	}
+	@PreUpdate
+	protected void onUpdate(){
+	    this.updatedAt = new Date();
+	}
+		
+ 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+	    name = "book_likes", 
+	    joinColumns = @JoinColumn(name = "book_id"), 
+	    inverseJoinColumns = @JoinColumn(name = "user_id")
+	)
+	private List<User> usersWhoLike;
+	
+	
+	public Book() {
+		
+	}
+	
+	public Book(String title, String author, String thoughts, User user) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.thoughts = thoughts;
+		this.user = user;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getThoughts() {
+		return thoughts;
+	}
+	public void setThoughts(String thoughts) {
+		this.thoughts = thoughts;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public List<User> getUsersWhoLike() {
+		return usersWhoLike;
+	}
+	public void setUsersWhoLike(List<User> usersWhoLike) {
+		this.usersWhoLike = usersWhoLike;
+	}
+	
+	
 
 
 

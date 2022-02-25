@@ -3,7 +3,6 @@ package com.mulloy.book_club.services;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,7 @@ import com.mulloy.book_club.models.Book;
 import com.mulloy.book_club.models.LoginUser;
 import com.mulloy.book_club.models.User;
 import com.mulloy.book_club.respoitories.BookRepository;
+import com.mulloy.book_club.respoitories.LikesRepository;
 import com.mulloy.book_club.respoitories.UserRepository;
 
 @Service
@@ -22,6 +22,8 @@ public class AppService {
 	private UserRepository userRepo;
 	@Autowired
 	private BookRepository bookRepo;
+	@Autowired
+	private LikesRepository likesRepo;
 	
 	// Registers a new user 
     public User register(User newUser, BindingResult result) {
@@ -81,6 +83,22 @@ public class AppService {
     
     public Book one_book(Long id) {
     	return this.bookRepo.findById(id).orElse(null);
+    }
+    public Book update_book(Book book) {
+    	return this.bookRepo.save(book);
+    	
+    }
+    public void like_book(Long book_id, Long user_id) {
+    	User userWhoLikes = one_user(user_id);
+    	Book bookToLike = one_book(book_id);
+    	bookToLike.getUsersWhoLike().add(userWhoLikes);
+    	this.bookRepo.save(bookToLike);
+    	//save since your list is updated
+    }
+    public void likeCount(Long book_id) {
+    	Long like_count = this.likesRepo.countBybook_id(book_id);
+    	System.out.println(like_count);
+    	// pass in Count entries where book id is eqaul to x number
     }
 }
     
