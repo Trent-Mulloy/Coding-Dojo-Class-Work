@@ -26,11 +26,11 @@
 <body class="container text-center" id="main">
     <c:set var = "typeOfthing" scope = "session" value = "${provider.type}"/>
     <c:choose>
-        <c:when test='${provider.type.equals(typeOfthing)}'>
+        <c:when test='${typeOfthing.equals("MD")}'>
             <h1>Welcom Dr. <c:out value='${ provider.lastName }'/></h1>
         </c:when>
         <c:otherwise>
-            <h1>Hello <c:out value='${ provider.type }'/></h1>
+            <h1>Hello <c:out value='${ provider.firstName }'/> <c:out value='${ provider.type }'/></h1>
         </c:otherwise>
     </c:choose>
 </body>

@@ -39,7 +39,7 @@
             <form:input path="lastName" class="form-control" name= "lastName" type="text"/>
         </div>
         <div class="form-group m-3">
-            <form:label path="type" for="type">Provider type (RN,BSN,ANP-BC, etc)</form:label>
+            <form:label path="type" for="type">Degree (RN,BSN,ANP-BC, etc)</form:label>
             <form:errors path="type" class = "text-danger" />
             <form:input path="type" class="form-control" name= "type" type="text"/>
         </div>

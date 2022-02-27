@@ -62,10 +62,10 @@ public class HomeController {
 		if(result.hasErrors()) {
 			return "login.jsp";
 		}
-		if(provider.getUpdatedAt() == null) {
-			session.setAttribute("sessionId", provider.getId());
-			return "redirect:/update/password";
-		}
+//		if(provider.getUpdatedAt() == null) {
+//			session.setAttribute("sessionId", provider.getId());
+//			return "redirect:/update/password";
+//		}
 		else {
 			session.setAttribute("sessionId", provider.getId());
 			return "redirect:/dashboard";
