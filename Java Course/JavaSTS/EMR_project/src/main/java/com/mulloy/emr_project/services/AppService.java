@@ -1,5 +1,6 @@
 package com.mulloy.emr_project.services;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.mulloy.emr_project.models.LoginProvider;
+import com.mulloy.emr_project.models.Patient;
 import com.mulloy.emr_project.models.Provider;
+import com.mulloy.emr_project.repositories.PatientRepository;
 import com.mulloy.emr_project.repositories.ProviderRepository;
 
 @Service
@@ -16,6 +19,8 @@ public class AppService {
 
 	@Autowired
 	private ProviderRepository providerRepo;
+	@Autowired
+	private PatientRepository patientRepo;
 	
 	public Provider register(Provider newProvider, BindingResult result) {
 		Optional<Provider> potentialProvider = this.providerRepo.findByUserName(newProvider.getUserName());
@@ -56,8 +61,17 @@ public class AppService {
 	public Provider one_provider(Long id) {
 		return this.providerRepo.findById(id).orElse(null);
 	}
-	public Provider update_provider(Provider provider) {
-		return this.providerRepo.save(provider); 
+	public void update_provider(Provider providerToEdit, String newPassword) {
+		String hashed = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+		providerToEdit.setPassword(hashed);
+		providerToEdit.setConfirmPassword(newPassword);
+		this.providerRepo.save(providerToEdit);
 	}
-
+	public Optional<Patient> find_patient(String firstName, String lastName, Date dateOfBirth) {
+		Optional<Patient> potentialPatient = this.patientRepo.findByFirstNameAndLastNameAndDateOfBirth(firstName, lastName, dateOfBirth);
+		return potentialPatient;
+	}
+	public Patient find_one_patient(Long id) {
+		return this.patientRepo.findById(id).orElse(null);
+	}
 }

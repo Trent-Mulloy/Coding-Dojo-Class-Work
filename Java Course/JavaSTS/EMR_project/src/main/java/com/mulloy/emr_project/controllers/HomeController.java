@@ -1,9 +1,13 @@
 package com.mulloy.emr_project.controllers;
 
+import java.util.Date;
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,11 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mulloy.emr_project.models.LoginProvider;
+import com.mulloy.emr_project.models.Patient;
 import com.mulloy.emr_project.models.Provider;
 import com.mulloy.emr_project.services.AppService;
+
 
 @Controller
 public class HomeController {
@@ -62,10 +68,10 @@ public class HomeController {
 		if(result.hasErrors()) {
 			return "login.jsp";
 		}
-//		if(provider.getUpdatedAt() == null) {
-//			session.setAttribute("sessionId", provider.getId());
-//			return "redirect:/update/password";
-//		}
+		if(provider.getUpdatedAt() == null) {
+			session.setAttribute("sessionId", provider.getId());
+			return "redirect:/update/password";
+		}
 		else {
 			session.setAttribute("sessionId", provider.getId());
 			return "redirect:/dashboard";
@@ -81,16 +87,14 @@ public class HomeController {
 		return "update/providerPassword.jsp";
 	}
 	
-	//updates the password
-	@PutMapping("/change/password/{id}")
-	public String change_password(@PathVariable("id") Long id, @Valid @ModelAttribute("providerToEdit")Provider providerToEdit, BindingResult result, HttpSession session) {
-		if(result.hasErrors()) {
-			System.out.println(result);
-			return "update/providerPassword.jsp"; 
-		}else {
-			this.appServ.update_provider(providerToEdit);
-			return "redirect:/dashboard";
-		}
+	
+//	"/change/passwordanotherway/${providerToEdit.id}
+	@PostMapping("/change/password/{id}")
+	public String change_password(@PathVariable("id") Long id, @RequestParam("password") String newPassword, HttpSession session) {
+		Provider providerToEdit = this.appServ.one_provider(id);
+		//send the providerToEdit and the newPassword to service where the service will encrypt the newPassword set the providerToEdit.setPassword to be the new encrypted passsword
+		this.appServ.update_provider(providerToEdit, newPassword);
+		return "redirect:/dashboard";
 	}
 	
 	//render the dash board page for provider
@@ -105,5 +109,40 @@ public class HomeController {
 			return "dashboard.jsp";
 		}
 	}
-
+	
+	//Goes to Form to register patient
+	@GetMapping("/register/patient")
+	public String register_patient(Model model) {
+		model.addAttribute("patientP", new Patient());
+		return "register/patient.jsp";
+	}
+	//Submit the register patient form
+	@PostMapping("/search/register/patient")
+		public String if_patient_exists(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("dateOfBirth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  Date dateOfBirth) {
+		Optional<Patient> possiblePatient = this.appServ.find_patient(firstName, lastName, dateOfBirth);
+		
+		//if patient is already in DB
+		if(possiblePatient.isPresent()) {
+			Patient p = possiblePatient.get();
+			Long id = p.getId();
+			return "redirect:/prePopForm/"+id;
+		}
+		//new patient
+		else {
+			return "redirect:/newForm";
+		}
+	}
+	@GetMapping("/prePopForm/{id}")
+	public String existing_patient_form(Model model, @PathVariable("id") Long id) {
+		Patient possiblePatient = this.appServ.find_one_patient(id);
+		model.addAttribute("patientP", possiblePatient);
+		return "register/prePopForm.jsp";
+	}
+	
+	@GetMapping("/newForm")
+	public String new_patient_form(Model model) {
+		model.addAttribute("newPatient", new Patient());
+		return "register/newForm.jsp"; 
+	}
+	
 }

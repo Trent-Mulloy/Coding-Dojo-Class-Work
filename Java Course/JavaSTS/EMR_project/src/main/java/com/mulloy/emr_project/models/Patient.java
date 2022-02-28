@@ -30,6 +30,7 @@ public class Patient {
 	@NotEmpty
 	private String lastName;
 	@NotEmpty
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 	@NotEmpty
 	@Size(min=9, max=9)
@@ -135,6 +136,31 @@ public class Patient {
 	public void setNationality(String nationality) {
 		Nationality = nationality;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	public List<PatientChart> getPatientCharts() {
+		return patientCharts;
+	}
+	public void setPatientCharts(List<PatientChart> patientCharts) {
+		this.patientCharts = patientCharts;
+	}
+	
 	
 	
 }

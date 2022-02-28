@@ -25,23 +25,15 @@
 </head>
 <body class="container text-center" id="main">
     <h1>Hello <c:out value='${ providerToEdit.firstName }'/> <c:out value='${ providerToEdit.lastName }'/> please update your password</h1>
-      <form:form action="/change/password/${providerToEdit.id}" method="post" class="container text-center" id="Form" modelAttribute="providerToEdit">
-        <input type="hidden" name="_method" value="put">
-        <form:input type="hidden" path="type" value="${providerToEdit.type}"/>
-        <form:input type="hidden" path="userName" value="${providerToEdit.userName}"/>
-        <form:input type="hidden" path="firstName" value="${providerToEdit.firstName}"/>
-        <form:input type="hidden" path="lastName" value="${providerToEdit.lastName}"/>
-        <div class="form-group m-3">
-            <form:label path="password" for="password">New Password:</form:label>
-            <form:errors path="password" class = "text-danger" />
-            <form:input path="password" class="form-control" name= "password" type="text"/>
-        </div>
-        <div class="form-group m-3">
-            <form:label path="confirmPassword" for="confirmPassword">Confirm New Password:</form:label>
-            <form:errors path="confirmPassword" class = "text-danger" />
-            <form:input path="confirmPassword" class="form-control" name= "confirmPassword" type="text"/>
-        </div>
+
+    <form action="/change/password/${providerToEdit.id}" method="post" class="container text-center" id="Form">
+    <div class="form-group m-3">
+            <label for="">New Password:</label>
+            <br>
+            <input type="text" name="password">
+    </div>
+        <br>
         <input type= "submit" class="btn-primary btn" value="Update Password"/>
-        </form:form>
+    </form>
 </body>
 </html> 
