@@ -74,4 +74,7 @@ public class AppService {
 	public Patient find_one_patient(Long id) {
 		return this.patientRepo.findById(id).orElse(null);
 	}
+	public Patient register_patient(Patient patient) {
+		return this.patientRepo.save(patient);
+	}
 }

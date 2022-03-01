@@ -29,13 +29,13 @@ public class Patient {
 	private String firstName;
 	@NotEmpty
 	private String lastName;
-	@NotEmpty
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 	@NotEmpty
 	@Size(min=9, max=9)
 	private String socialSecurityNumber;
-	@NotEmpty
+	
 	private int currentAge;
 	
 	

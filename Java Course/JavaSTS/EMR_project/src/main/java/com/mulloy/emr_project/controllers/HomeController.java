@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mulloy.emr_project.models.LoginProvider;
@@ -139,10 +140,25 @@ public class HomeController {
 		return "register/prePopForm.jsp";
 	}
 	
+	@PutMapping("/confirm/patient/info/{id}")
+	public String confirm_patient(@PathVariable("id") Long id, @Valid @ModelAttribute("patientP") Patient possiblePatient, BindingResult result) {
+		if (result.hasErrors()) {
+			return "register/prePopForm.jsp";
+		}else {
+			this.appServ.register_patient(possiblePatient);
+			return "redirect:/newChart/"+id;
+		}
+	}
+	
 	@GetMapping("/newForm")
 	public String new_patient_form(Model model) {
 		model.addAttribute("newPatient", new Patient());
 		return "register/newForm.jsp"; 
+	}
+	
+	@GetMapping("/newChart/{id}")
+	public String new_chart() {
+		return "newChart.jsp";
 	}
 	
 }

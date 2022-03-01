@@ -27,7 +27,8 @@
     <h1>Existing Patient Found, Please Confirm Information.</h1>
     <div class="row">
         <div class="col">
-        <form:form action="/admin/register/provider" method="post" class="container text-center" id="Form" modelAttribute="patientP">
+        <form:form action="/confirm/patient/info/${patientP.id}" method="post" class="container text-center" id="Form" modelAttribute="patientP">
+            <input type="hidden" name="_method" value="put">
         <div class="form-group m-3">
             <form:label path="firstName" for="firstName">First Name:</form:label>
             <form:errors path="firstName" class = "text-danger" />
