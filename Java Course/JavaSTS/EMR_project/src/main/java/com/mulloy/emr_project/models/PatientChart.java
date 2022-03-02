@@ -28,6 +28,10 @@ public class PatientChart {
 	@NotEmpty(message="patient name is required")
 	private String patientName;
 	
+	private String chiefComplaint;
+	
+	private String status;
+	
 	private String docNotes;
 	
 	private String nurseNotes;
@@ -105,6 +109,21 @@ public class PatientChart {
 	public void setaProvider(Provider aProvider) {
 		this.aProvider = aProvider;
 	}
+	public String getChiefComplaint() {
+		return chiefComplaint;
+	}
+	public void setChiefComplaint(String chiefComplaint) {
+		this.chiefComplaint = chiefComplaint;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
 	
 	
 	

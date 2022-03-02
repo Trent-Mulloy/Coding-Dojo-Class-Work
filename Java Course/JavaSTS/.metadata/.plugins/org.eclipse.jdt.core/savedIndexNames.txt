@@ -112,7 +112,6 @@ INDEX VERSION 1.131+/Users/trent/Desktop/Dojo Folder/Java Course/JavaSTS/.metada
 1929613964.index
 3712536953.index
 2212322835.index
-3210099793.index
 4138517655.index
 2148054647.index
 750219428.index

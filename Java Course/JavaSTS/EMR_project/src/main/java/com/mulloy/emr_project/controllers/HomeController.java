@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mulloy.emr_project.models.LoginProvider;
 import com.mulloy.emr_project.models.Patient;
+import com.mulloy.emr_project.models.PatientChart;
 import com.mulloy.emr_project.models.Provider;
 import com.mulloy.emr_project.services.AppService;
 
@@ -78,6 +80,11 @@ public class HomeController {
 			return "redirect:/dashboard";
 		}
 	}
+	@RequestMapping("/provider/logout")
+	 public String logout(HttpSession session) {
+		 session.invalidate();
+		 return "redirect:/";
+	 }
 	
 	//Update Provider password page
 	@GetMapping("/update/password")
@@ -107,8 +114,19 @@ public class HomeController {
 		else {
 			Long providerId = (long) session.getAttribute("sessionId");
 			model.addAttribute("provider", this.appServ.one_provider(providerId));
+			model.addAttribute("allCharts", this.appServ.all_charts());
 			return "dashboard.jsp";
 		}
+	}
+	
+	//render "My patients" dash board
+	@GetMapping("/dashboard/provider/{id}/patients")
+	public String my_patients_dash(Model model, @PathVariable("id") Long id, HttpSession session) {
+		Provider aProvider = this.appServ.one_provider(id);
+		model.addAttribute("myCharts", this.appServ.charts_by_provider(aProvider));
+		Long providerId = (long) session.getAttribute("sessionId");
+		model.addAttribute("provider", this.appServ.one_provider(providerId));
+		return "my_patients_dashboard.jsp";
 	}
 	
 	//Goes to Form to register patient
@@ -133,13 +151,14 @@ public class HomeController {
 			return "redirect:/newForm";
 		}
 	}
+	//Form that shows if an existing patient is found
 	@GetMapping("/prePopForm/{id}")
 	public String existing_patient_form(Model model, @PathVariable("id") Long id) {
 		Patient possiblePatient = this.appServ.find_one_patient(id);
 		model.addAttribute("patientP", possiblePatient);
 		return "register/prePopForm.jsp";
 	}
-	
+	//Confirms and updates any info for existing patient
 	@PutMapping("/confirm/patient/info/{id}")
 	public String confirm_patient(@PathVariable("id") Long id, @Valid @ModelAttribute("patientP") Patient possiblePatient, BindingResult result) {
 		if (result.hasErrors()) {
@@ -149,16 +168,59 @@ public class HomeController {
 			return "redirect:/newChart/"+id;
 		}
 	}
-	
+	//Show empty form if existing patient is not found
 	@GetMapping("/newForm")
 	public String new_patient_form(Model model) {
 		model.addAttribute("newPatient", new Patient());
 		return "register/newForm.jsp"; 
 	}
-	
-	@GetMapping("/newChart/{id}")
-	public String new_chart() {
+	//Submit new patient Form
+	@PostMapping("/register/new/patient")
+	public String register_new_patient_form(@Valid @ModelAttribute("newPatient") Patient newPatient, BindingResult result) {
+		if(result.hasErrors()) {
+			return "register/newForm.jsp";
+		}
+		else {
+			Patient p= this.appServ.register_patient(newPatient);
+			Long id = p.getId();
+			
+			return "redirect:/newChart/"+id;
+		}
+	}
+	//Show to screen to make a new visit chart after registering or confirming patient in DB
+	@GetMapping("/newChart/{patient_id}")
+	public String new_chart(Model model, HttpSession session, @PathVariable("patient_id") Long patient_id) {
+		Patient possiblePatient = this.appServ.find_one_patient(patient_id);
+		System.out.println(patient_id);
+		System.out.println(session.getAttribute("sessionId"));
+		model.addAttribute("patientP", possiblePatient);
+		model.addAttribute("newChart", new PatientChart());
+		
 		return "newChart.jsp";
+	}
+	@PostMapping("/submit/new/chart/{patientid}")
+	public String submit_new_chart(@PathVariable("patientid") Long patientId, @Valid @ModelAttribute("newChart") PatientChart newChart, BindingResult result, HttpSession session) {
+		Long providerId = (Long) session.getAttribute("sessionId");
+		Provider aProvider = this.appServ.one_provider(providerId);
+		Patient aPatient = this.appServ.find_one_patient(patientId);
+		newChart.setaPatient(aPatient);
+		newChart.setaProvider(aProvider);
+		newChart.setStatus("open");
+		if(result.hasErrors()) {
+			return "newChart.jsp";
+		}
+		else {
+			this.appServ.save_new_chart(newChart);
+			return "redirect:/dashboard";
+		}
+	}
+	
+	//Show Patients Chart with notes and history vistists
+	@RequestMapping("/patient/chart/{chartId}")
+	public String show_active_chart(Model model, HttpSession session, @PathVariable("chartId")Long chartId) {
+		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		model.addAttribute("currentChart", currentChart);
+		return "current_patient_chart.jsp";
 	}
 	
 }

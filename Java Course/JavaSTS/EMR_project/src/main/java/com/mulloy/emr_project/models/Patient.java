@@ -31,6 +31,7 @@ public class Patient {
 	private String lastName;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@Column(name = "date_of_birth", columnDefinition = "DATE")
 	private Date dateOfBirth;
 	@NotEmpty
 	@Size(min=9, max=9)
@@ -74,8 +75,8 @@ public class Patient {
 		this.dateOfBirth = dateOfBirth;
 		this.socialSecurityNumber = socialSecurityNumber;
 		this.currentAge = currentAge;
-		Occupation = occupation;
-		Nationality = nationality;
+		this.Occupation = occupation;
+		this.Nationality = nationality;
 	}
 	//====================================
 	//getter and setter

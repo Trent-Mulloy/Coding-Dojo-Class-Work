@@ -37,10 +37,45 @@
                 </c:otherwise>
             </c:choose>
         </div>
-        <div class="col"></div>
+        <div class="col"><a href="/provider/logout" class="btn btn-primary btn-sm btn-block">logout</a></div>
     </div>
-    <div class="row" id="nav_bar">
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="btn btn-secondary btn-sm btn-block" href="">All Patients</a>
+            <a class="btn btn-primary btn-sm btn-block" href="/dashboard/provider/${provider.id}/patients">My Patients</a>
+          </div>
+        </div>
+      </nav>
+        <br>
+        <br>
+    <div class="row">
+        <table class="table table-striped table-dark" id="tbl">
+            <thead>
+              <tr>
+                <th scope="col">Bed</th>
+                <th scope="col">Patient</th>
+                <th scope="col">Age</th>
+                <th scope="col">Complaint</th>
+                <th scope="col">Disposition</th>
+              </tr>
+            </thead>
+            <tbody>
+                <c:forEach items='${ allCharts }' var='chart_obj'>
+              <tr>
+                <td>E-1</td>
+                <td><a href="patient/chart/${chart_obj.id}"><c:out value='${ chart_obj.patientName }'/></a></td>
+                <td><c:out value='${ chart_obj.aPatient.currentAge }'/></td>
+                <td><c:out value="${chart_obj.chiefComplaint}"></c:out></td>
+                <td>Current Disposition</td>
+              </tr>
+             </c:forEach>
+            </tbody>
+          </table>
     </div>
+    
 </body>
 </html> 

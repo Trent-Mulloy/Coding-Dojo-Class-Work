@@ -1,6 +1,7 @@
 package com.mulloy.emr_project.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -10,7 +11,9 @@ import org.springframework.validation.BindingResult;
 
 import com.mulloy.emr_project.models.LoginProvider;
 import com.mulloy.emr_project.models.Patient;
+import com.mulloy.emr_project.models.PatientChart;
 import com.mulloy.emr_project.models.Provider;
+import com.mulloy.emr_project.repositories.PatientChartRepository;
 import com.mulloy.emr_project.repositories.PatientRepository;
 import com.mulloy.emr_project.repositories.ProviderRepository;
 
@@ -21,6 +24,8 @@ public class AppService {
 	private ProviderRepository providerRepo;
 	@Autowired
 	private PatientRepository patientRepo;
+	@Autowired
+	private PatientChartRepository chartRepo;
 	
 	public Provider register(Provider newProvider, BindingResult result) {
 		Optional<Provider> potentialProvider = this.providerRepo.findByUserName(newProvider.getUserName());
@@ -77,4 +82,18 @@ public class AppService {
 	public Patient register_patient(Patient patient) {
 		return this.patientRepo.save(patient);
 	}
+	
+	public PatientChart save_new_chart(PatientChart newChart) {
+		return this.chartRepo.save(newChart);
+	}
+	public List<PatientChart> all_charts(){
+		return this.chartRepo.findByStatus("open");
+	}
+	public List<PatientChart> charts_by_provider(Provider aProvider){
+		return this.chartRepo.findByaProviderAndStatus(aProvider, "open");
+	}
+	public PatientChart find_current_chart(Long id) {
+		return this.chartRepo.findById(id).orElse(null);
+	}
+	
 }
