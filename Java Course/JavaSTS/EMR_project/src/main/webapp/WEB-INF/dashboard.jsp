@@ -12,34 +12,34 @@
 <style>
     #main{
        width: 100%;
-       background-color: black;
-       color: yellow;
+       background-color: #F0EAD6;
+       color: blue;
     }
    #nav_bar{
-       background-color: aqua;
+       background-color: #1434A4;
        height: 3vh;
        width: 100%;
    }
 
 </style>
 </head> 
-<body class="container text-center" id="main">
+<body class="container text-center" id="main" style="padding-top: 2%;">
     <div class="row">
-        <div class="col"><a href="/register/patient" class="btn btn-primary btn-sm btn-block">Register Patient</a></div>
+        <div class="col" style="margin-top: 1%;"><a href="/register/patient" class="btn btn-primary btn-sm btn-block">Register Patient</a></div>
         <div class="col">
             <c:set var = "typeOfthing" scope = "session" value = "${provider.type}"/>
             <c:choose>
                 <c:when test='${typeOfthing.equals("MD")}'>
-                    <h1>Welcom Dr. <c:out value='${ provider.lastName }'/></h1>
+                    <h1>Welcome Dr. <c:out value='${ provider.lastName }'/></h1>
                 </c:when>
                 <c:otherwise>
                     <h1>Hello <c:out value='${ provider.firstName }'/> <c:out value='${ provider.type }'/></h1>
                 </c:otherwise>
             </c:choose>
         </div>
-        <div class="col"><a href="/provider/logout" class="btn btn-primary btn-sm btn-block">logout</a></div>
+        <div class="col" style="margin-top: 1%;"><a href="/provider/logout" class="btn btn-primary btn-sm btn-block">logout</a></div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

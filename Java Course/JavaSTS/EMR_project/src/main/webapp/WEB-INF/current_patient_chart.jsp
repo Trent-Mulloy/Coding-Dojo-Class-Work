@@ -11,10 +11,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <style>
     #main{
-       width: 100%;
-       background-color: black;
-       color: yellow;
-    }
+        width: 100%;
+        background-color: #F0EAD6;
+        color: blue;
+     }
     #docNotesArea{
         height: 30vh;
         width: 30vw;
@@ -32,8 +32,9 @@
     <div class="row">
         <div class="col">
             <form action="/update/patientRoom/${currentChart.id}" method="post">
-                <h2><Label for="room_location">Room: <c:out value='${ currentChart.room }'/></Label></h2>
+                <h2><Label for="room_location">Room:</h2>
                 <select name="room_location">
+                    <option value="" selected disabled hidden><c:out value='${ currentChart.room }'/></option>
                     <option value="pending">Pending</option>
                     <option value="E-1">E-1</option>
                     <option value="E-2">E-2</option>
@@ -66,7 +67,7 @@
                 <tbody>
                     <c:forEach items='${ historyChart }' var='chart_obj'>
                   <tr>
-                    <td><c:out value="${chart_obj.chiefComplaint}"></c:out></td>
+                    <td><a href="/view/history/chart/${chart_obj.id}"><c:out value="${chart_obj.chiefComplaint}"></c:out></a></td>
                     <td><c:out value='${ chart_obj.disposition }'/></td>
                   </tr>
                  </c:forEach>

@@ -31,9 +31,9 @@ public class PatientChart {
 	private String chiefComplaint;
 	
 	private String status;
-	
+	@Column(name = "doc_notes", columnDefinition = "TEXT")
 	private String docNotes;
-	
+	@Column(name = "nurse_notes", columnDefinition = "TEXT")
 	private String nurseNotes;
 	
 	private String room;

@@ -296,5 +296,12 @@ public class HomeController {
 		this.appServ.save_new_chart(currentChart);
 		return "redirect:/dashboard";
 	}
+	//view an old chart
+	@GetMapping("/view/history/chart/{chart_id}")
+	public String view_history_chart(Model model, @PathVariable("chart_id") Long charId) {
+		PatientChart currentChart = this.appServ.find_current_chart(charId);
+		model.addAttribute("currentChart", currentChart);
+		return "historyChart.jsp";
+	}
 	
 }
