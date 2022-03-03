@@ -38,6 +38,23 @@
             <form:errors path="chiefComplaint" class = "text-danger" />
             <form:textarea path="chiefComplaint" class="form-control" name= "chiefComplaint"/>
         </div>
+        <div class="form-group m-3">
+            <form:label path="room" for="room">Room:</form:label>
+            <form:errors path="room" class = "text-danger" />
+            <form:select path="room" name="room">
+                <form:option value="Pending">Pending</form:option>
+                <form:option value="E-1">E-1</form:option>
+                <form:option value="E-2">E-2</form:option>
+                <form:option value="E-3">E-3</form:option>
+                <form:option value="E-4">E-4</form:option>
+                <form:option value="E-5">E-5</form:option>
+                <form:option value="E-6">E-6</form:option>
+                <form:option value="E-7">E-7</form:option>
+                <form:option value="E-8">E-8</form:option>
+                <form:option value="E-9">E-9</form:option>
+                <form:option value="E-10">E-10</form:option>
+            </form:select>
+        </div>
         <input type= "submit" class="btn-primary btn" value="Submit"/>
         </form:form>
     </div>

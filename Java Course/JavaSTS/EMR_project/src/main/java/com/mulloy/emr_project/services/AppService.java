@@ -95,5 +95,8 @@ public class AppService {
 	public PatientChart find_current_chart(Long id) {
 		return this.chartRepo.findById(id).orElse(null);
 	}
+	public List<PatientChart> history_charts(Patient aPatient){
+		return this.chartRepo.findByaPatientAndStatus(aPatient, "closed");
+	}
 	
 }

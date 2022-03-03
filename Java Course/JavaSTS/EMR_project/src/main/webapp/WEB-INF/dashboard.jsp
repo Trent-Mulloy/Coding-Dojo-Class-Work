@@ -66,11 +66,11 @@
             <tbody>
                 <c:forEach items='${ allCharts }' var='chart_obj'>
               <tr>
-                <td>E-1</td>
+                <td><c:out value='${ chart_obj.room }'/></td>
                 <td><a href="patient/chart/${chart_obj.id}"><c:out value='${ chart_obj.patientName }'/></a></td>
                 <td><c:out value='${ chart_obj.aPatient.currentAge }'/></td>
                 <td><c:out value="${chart_obj.chiefComplaint}"></c:out></td>
-                <td>Current Disposition</td>
+                <td><c:out value='${ chart_obj.disposition }'/></td>
               </tr>
              </c:forEach>
             </tbody>

@@ -35,6 +35,16 @@ public class PatientChart {
 	private String docNotes;
 	
 	private String nurseNotes;
+	
+	private String room;
+	
+	private String disposition;
+	
+	private Double weight;
+	
+	private String height;
+	
+	private String bloodPressure;
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;
@@ -121,6 +131,38 @@ public class PatientChart {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getRoom() {
+		return room;
+	}
+	public void setRoom(String room) {
+		this.room = room;
+	}
+	public String getDisposition() {
+		return disposition;
+	}
+	public void setDisposition(String disposition) {
+		this.disposition = disposition;
+	}
+	public String getBloodPressure() {
+		return bloodPressure;
+	}
+	public void setBloodPressure(String bloodPressure) {
+		this.bloodPressure = bloodPressure;
+	}
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
+	public Double getWeight() {
+		return weight;
+	}
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
+	
+	
 	
 	
 	

@@ -219,8 +219,82 @@ public class HomeController {
 	@RequestMapping("/patient/chart/{chartId}")
 	public String show_active_chart(Model model, HttpSession session, @PathVariable("chartId")Long chartId) {
 		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		Patient aPatient = currentChart.getaPatient();
+		model.addAttribute("historyChart", this.appServ.history_charts(aPatient));
 		model.addAttribute("currentChart", currentChart);
 		return "current_patient_chart.jsp";
+	}
+	//update the room the patient is in
+	@PostMapping("/update/patientRoom/{chartId}")
+	public String update_room(@PathVariable("chartId") Long chartId, @RequestParam("room_location") String room) {
+		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		currentChart.setRoom(room);
+		this.appServ.save_new_chart(currentChart);
+		return "redirect:/patient/chart/"+chartId;
+	}
+	//update the current disposition
+	@PostMapping("/update/disposition/{chartId}")
+	public String update_disposition(@PathVariable("chartId") Long chartId, @RequestParam("disposition") String dispo) {
+		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		currentChart.setDisposition(dispo);
+		this.appServ.save_new_chart(currentChart);
+		return "redirect:/patient/chart/"+chartId;
+	}
+	//update the current vitals
+	@PostMapping("update/currentVitals/{chartId}")
+	public String update_vitals(@PathVariable("chartId") Long chartId, @RequestParam("bloodPressure") String bP, @RequestParam("height") String height, @RequestParam("weight") Double weight) {
+		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		currentChart.setBloodPressure(bP);
+		currentChart.setHeight(height);
+		currentChart.setWeight(weight);
+		this.appServ.save_new_chart(currentChart);
+		return "redirect:/patient/chart/"+chartId;
+	}
+	//update the doc Notes
+	@GetMapping("update/docNotes/{chart_id}")
+	public String updtae_doc_notes(Model model, HttpSession session, @PathVariable("chart_id") Long chartId) {
+		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		model.addAttribute("currentChart", currentChart);
+		return "update/docNotes.jsp";
+	}
+	//submit the docNotes
+	@PutMapping("/submit/new/docNotes/{id}")
+	public String submit_docNotes(@PathVariable("id") Long chartId, @Valid @ModelAttribute("currentChart") PatientChart currentChart, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println(result);
+			return "update/docNotes.jsp";
+		}
+		else {
+			this.appServ.save_new_chart(currentChart);
+			return "redirect:/patient/chart/"+chartId;
+		}
+		
+	}
+	//update Nurse Notes
+	@GetMapping("/update/nurseNotes/{chart_id}")
+	public String update_nurse_notes(Model model, @PathVariable("chart_id") Long charId) {
+		PatientChart currentChart = this.appServ.find_current_chart(charId);
+		model.addAttribute("currentChart", currentChart);
+		return "update/nurseNotes.jsp";
+	}
+	
+	//submit nurseNotes
+	@PutMapping("/submit/new/nurseNotes/{id}")
+	public String submit_nurseNotes(@PathVariable("id") Long chartId, @Valid @ModelAttribute("currentChart") PatientChart currentChart, BindingResult result) {
+		if(result.hasErrors()) {
+			return "update/nurseNotes.jsp";
+		}
+		else {
+			this.appServ.save_new_chart(currentChart);
+			return "redirect:/patient/chart/"+chartId;
+		}
+	}
+	@GetMapping("/discharge/{id}")
+	public String discharge_chart(@PathVariable("id") Long chartId) {
+		PatientChart currentChart = this.appServ.find_current_chart(chartId);
+		currentChart.setStatus("closed");
+		this.appServ.save_new_chart(currentChart);
+		return "redirect:/dashboard";
 	}
 	
 }

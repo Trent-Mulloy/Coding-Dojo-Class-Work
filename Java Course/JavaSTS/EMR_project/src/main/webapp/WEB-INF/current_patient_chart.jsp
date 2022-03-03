@@ -31,6 +31,49 @@
     <a href="/dashboard" class="btn btn-primary btn-sm btn-block">Back</a>
     <div class="row">
         <div class="col">
+            <form action="/update/patientRoom/${currentChart.id}" method="post">
+                <h2><Label for="room_location">Room: <c:out value='${ currentChart.room }'/></Label></h2>
+                <select name="room_location">
+                    <option value="pending">Pending</option>
+                    <option value="E-1">E-1</option>
+                    <option value="E-2">E-2</option>
+                    <option value="E-3">E-3</option>
+                    <option value="E-4">E-4</option>
+                    <option value="E-5">E-5</option>
+                    <option value="E-6">E-6</option>
+                    <option value="E-7">E-7</option>
+                    <option value="E-8">E-8</option>
+                    <option value="E-9">E-9</option>
+                    <option value="E-10">E-10</option>
+                </select>
+                <input type= "submit" class="btn btn-primary btn-sm" value="Update Room"/>
+            </form>
+            <br>
+            <br>
+            <form action="/update/disposition/${currentChart.id}" method="post">
+                <h2>Current Disposition:</h2>
+                <input type="text" name="disposition" placeholder="${currentChart.disposition}">
+                <input type= "submit" class="btn btn-primary btn-sm" value="Update"/>
+            </form>
+            <h2>History</h2>
+            <table class="table table-striped table-dark" id="tbl">
+                <thead>
+                  <tr>
+                    <th scope="col">Complaint</th>
+                    <th scope="col">Disposition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items='${ historyChart }' var='chart_obj'>
+                  <tr>
+                    <td><c:out value="${chart_obj.chiefComplaint}"></c:out></td>
+                    <td><c:out value='${ chart_obj.disposition }'/></td>
+                  </tr>
+                 </c:forEach>
+                </tbody>
+              </table>
+        </div>
+        <div class="col">
             <h2>Doc Notes</h2>
             <br>
             <textarea readonly id="docNotesArea" placeholder="${currentChart.docNotes}"></textarea>
@@ -48,10 +91,19 @@
             <br>
             <br>
             <h2>Vitals:</h2>
-            <h3>Blood Pressure-</h3>
-            <h3>Height-</h3>
-            <h3>Weight-</h3>
-            <a href="/update/currentVitals/${ currentChart.id}" class="btn btn-primary btn-sm btn-block">Update Vitals</a>
+            <form action="/update/currentVitals/${currentChart.id}" method="post">
+                <label for="bloodPressure" style="margin-right: 20px;">BP:</label>
+                <input type="text" name="bloodPressure" placeholder="${currentChart.bloodPressure}">
+                <br>
+                <label for="height">Height</label>
+                <input type="text" name="height" placeholder="${currentChart.height}">
+                <br>
+                <label for="weight">Weight</label>
+                <input type="number" name="weight" placeholder="${currentChart.weight}">
+                <input type= "submit" class="btn btn-primary btn-sm" value="Update Vitals"/>
+            </form>
+            
+            <a href="/discharge/${ currentChart.id}" class="btn btn-danger btn-sm btn-block" style="margin-top: 130%;">Discahrge</a>
         </div>
     </div>
 </body>
