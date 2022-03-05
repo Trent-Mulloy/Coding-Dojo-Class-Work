@@ -101,6 +101,7 @@
                 <br>
                 <label for="weight">Weight</label>
                 <input type="number" name="weight" placeholder="${currentChart.weight}">
+                <br>
                 <input type= "submit" class="btn btn-primary btn-sm" value="Update Vitals"/>
             </form>
             
