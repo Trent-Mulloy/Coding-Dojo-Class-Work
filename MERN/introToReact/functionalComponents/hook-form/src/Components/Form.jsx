@@ -2,10 +2,6 @@
 import React, { useState } from  'react';
 
 const Form = props => {
-    const [inputs, setInputs] = useState({
-        userName: "",
-        email: ""
-    });
     const [userName, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,19 +16,6 @@ const Form = props => {
         setConfirm("");
         console.log("welcome", newUser);
     }
-
-    let handleChange =(e)=> {
-        //change the state
-        //copy whats in your state
-        //change only the property for the NAME of the input
-        setInputs({
-            ...inputs,
-            [e.target.name]: e.target.value
-        })
-        
-    }
-
-
 
     const lengthValidator = (input, num) =>{
         if(input.length>=num){
@@ -53,7 +36,7 @@ const Form = props => {
             <form onSubmit={ createUser }>
                 <div>
                     <label>Username: </label> 
-                    <input value={userName} type="text" name='userName' onChange={ (e) => setUsername(e.target.value) } />
+                    <input value={userName} type="text" onChange={ (e) => setUsername(e.target.value) } />
                     { lengthValidator(userName, 2) || userName.length == 0? "" : <p>UserName must be atleast 2 charecters</p>}
                 </div>
                 <div>
