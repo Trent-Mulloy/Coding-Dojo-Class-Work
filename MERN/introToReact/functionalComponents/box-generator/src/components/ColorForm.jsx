@@ -1,12 +1,16 @@
 import React, { useState } from  'react';
+import Box from './Box';
+
 
 const ColorForm = props =>{
-    const [color, setColor] = useState("");
+    // const [color, setColor] = useState("");
+    // const [boxes, setBoxes] = useState([]);
+    const {boxes, setBoxes, color, setColor} = props
 
 
     const createBox = (e) =>{
         e.preventDefault();
-        const newBox = {color};
+        setBoxes([...boxes, color])
         setColor("");
     }
 
@@ -17,6 +21,7 @@ const ColorForm = props =>{
                 <input value={color} type="text" onChange={ (e) => setColor(e.target.value) } />
                 <input type="submit" value="Create Box" />
             </form>
+            {/* <Box color={boxes}></Box> */}
         </div>
     )
 }
