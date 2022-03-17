@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-
+import axios from 'axios';
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -9,11 +9,10 @@ function App() {
     event.preventDefault();
 
     console.log("calling API");
-    fetch("https://pokeapi.co/api/v2/pokemon/?")
-      .then(data => data.json())
+    axios.get("https://pokeapi.co/api/v2/pokemon?limit=800")
       .then(res => {
         console.log(res);
-        setPokemon(res);
+        setPokemon(res.data.results);
       })
       .catch(err => console.log(err))
   }
@@ -26,7 +25,7 @@ function App() {
       <ul>
       {
           pokemon.map((poke,i)=>{
-            return <li key={i}>{poke}</li>
+            return <li key={i}>{poke.name}</li>
           })
         }
       </ul>
