@@ -40,7 +40,7 @@ const onSubmitHandler = (e) =>{
 }
 const getRidOf = (i) =>{
   setItems(Items.filter((item, idx)=>{
-    return i != idx
+    return i !== idx
   }))
 }
 
