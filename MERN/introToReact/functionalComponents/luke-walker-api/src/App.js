@@ -1,13 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
-import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import { Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Planets from './Components/Planets';
+import People from './Components/People';
 
 
 //first make a form that works
 //when it submits make it go to ${category}/${id}
-//have a state for your data from the axios call
-//have an axios call to url//swapi/${category}/${id}
+//have a state for your data
 //have routes that go collect the data
 
 
@@ -18,6 +20,7 @@ function App() {
 
     const onSubmitHandler = (e) =>{
       e.preventDefault();
+      console.log(category, id)
       history.push(`/${category}/${id}`)
       setCategory("");
       setId("");
@@ -32,7 +35,16 @@ function App() {
         <input value={id} type="text" onChange={ (e) => setId(e.target.value) } />
         <input type="submit"></input>
       </form>
+      <Switch>
+        <Route exact path="/Planets/:id">
+          <Planets/>
+        </Route>
+        <Route exact path="/People/:id">
+          <People/>
+        </Route>
+      </Switch>
     </div>
+
   );
 }
 
