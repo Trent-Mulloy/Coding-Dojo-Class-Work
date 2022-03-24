@@ -7,11 +7,11 @@ const Home = props =>{
     const [products, setProducts] = useState([]);
 
     const updateHandler = (newList) =>{
-        setProducts(newList);
+        setProducts(newList); 
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:8000/api/products")
+        axios.get("http://localhost:8000/api/products") 
             .then(res =>{
                 setProducts(res.data);
             })

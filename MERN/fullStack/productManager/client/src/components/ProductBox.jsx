@@ -8,7 +8,7 @@ const ProductBox = props =>{
 
     const onDeleteHandler = (_id, index) =>{
         console.log(_id, index)
-        axios.delete(`http://localhost:8000/api/product/delete/${_id}`)
+        axios.delete(`http://localhost:8000/api/product/delete/${_id}`) 
             .then(res=>{
                 console.log(res)
                 history.push("/")
