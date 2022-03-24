@@ -1,9 +1,9 @@
-const Joke = require("../models/joke.model");
+const Product = require("../models/product.model");
 
 module.exports = {
 
-    findRandomJoke: (req, res) => {
-        Joke.find({})
+    findRandom: (req, res) => {
+        Product.find({})
         .then(
             //allJokes has count cuz array
             //return allJokes[random]
@@ -16,31 +16,31 @@ module.exports = {
     },
 
     findAll: (req,res) => {
-        Joke.find({})
+        Product.find({})
             .then(results => res.json(results))
             .catch(err => res.status(400).json({message: "no worky", err}))
     },
 
     findOne: (req,res) => {
-        Joke.findOne({_id: req.params._id})
+        Product.findOne({_id: req.params._id})
             .then(results => res.json(results))
             .catch(err => res.status(400).json({message: "no worky", err}))
     },
 
-    createJoke: (req,res) =>{
-        Joke.create(req.body)
+    createProduct: (req,res) =>{
+        Product.create(req.body)
             .then(results => res.json(results))
             .catch(err => res.status(400).json({message: "no worky", err}))
     },
 
     deleteOne: (req,res) => {
-        Joke.deleteOne({_id: req.params._id})
+        Product.deleteOne({_id: req.params._id})
             .then(results => res.json(results))
             .catch(err => res.status(400).json({message: "no worky", err}))
     },
 
     updateOne: (req,res) =>{
-        Joke.updateOne({_id: req.params._id}, req.body)
+        Product.updateOne({_id: req.params._id}, req.body)
             .then(results => res.json(results))
             .catch(err => res.status(400).json({message: "no worky", err}))
     },
