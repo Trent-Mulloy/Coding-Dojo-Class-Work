@@ -1,5 +1,5 @@
-import React, { useState } from  'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import React from  'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = props => {
     return(
@@ -13,9 +13,6 @@ const NavBar = props => {
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/add/product">Add Product</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="https://www.google.com/">Pricing</Link>
                     </li>
                     </ul>
                 </div>

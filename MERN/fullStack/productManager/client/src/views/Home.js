@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProductBox from '../components/ProductBox';
-import NavBar from '../components/NavBar';
+
 
 const Home = props =>{
     const [products, setProducts] = useState([]);
+
+    const updateHandler = (newList) =>{
+        setProducts(newList);
+    }
 
     useEffect(()=>{
         axios.get("http://localhost:8000/api/products")
@@ -17,7 +21,7 @@ const Home = props =>{
         <div>
             {
                 products.map((product,i)=>{
-                    return <ProductBox product={product} key={i}></ProductBox>
+                    return <ProductBox product={product} index={i} key={i} productsList={products} onChange={updateHandler}></ProductBox>
                 })
             }
         </div>

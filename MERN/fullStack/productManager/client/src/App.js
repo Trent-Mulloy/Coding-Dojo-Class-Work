@@ -1,12 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
-import { useHistory } from "react-router-dom";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import './App.css';
 import Home from './views/Home';
 import AddProduct from './views/AddProduct';
 import ViewProduct from './views/ViewProduct';
+import EditProduct from './views/EditProduct';
 
 function App() {
   return (
@@ -21,6 +20,9 @@ function App() {
         </Route>
         <Route exact path="/view/product/:_id">
           <ViewProduct/>
+        </Route>
+        <Route exact path="/edit/product/:_id">
+          <EditProduct/>
         </Route>
       </Switch>
     </div>

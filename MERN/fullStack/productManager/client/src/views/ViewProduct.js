@@ -13,7 +13,7 @@ import ProductBox from '../components/ProductBox';
                 setProduct(res.data);
             })
             .catch(err => console.log(err));
-    },[])
+    },[_id])
     return(
         <div>
             <ProductBox product={product}></ProductBox>
