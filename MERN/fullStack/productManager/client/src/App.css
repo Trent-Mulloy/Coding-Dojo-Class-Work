@@ -1,0 +1,16 @@
+.App{
+    text-align: center;
+    align-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: grey;
+}
+
+.productBox{
+    width: 50%;
+    background-color: cyan;
+    height: 10%;
+    text-align: center;
+    border: 3px solid black;
+    margin: 2px auto;
+}
