@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+mongoose.set('runValidators', true)
 mongoose.connect("mongodb://localhost/product_manager", {
     useNewUrlParser: true,
     useUnifiedTopology: true

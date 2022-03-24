@@ -35,7 +35,7 @@ const EditProduct = (props) =>{
                 console.log(res);
                 history.push('/')
             })
-            .catch(err =>{
+            .catch(err =>{ 
                 console.log(err.response.data.err.errors);
                 setError(err.response.data.err.errors);
             })
