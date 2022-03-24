@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import './App.css';
 import Home from './views/Home';
 import AddProduct from './views/AddProduct';
+import ViewProduct from './views/ViewProduct';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route exact path="/add/product">
           <AddProduct/>
+        </Route>
+        <Route exact path="/view/product/:_id">
+          <ViewProduct/>
         </Route>
       </Switch>
     </div>
